@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atom</title>
+  <link rel="stylesheet" href="./css/style.css">
+
+</head>
+
+<body id="home">
+  <header>
+    <div class="header-top">
+      <div class="itens-top">
+        <i class="fa fa-phone header-itens" aria-hidden="true"> 11 0800 1940 3800</i>
+        <div class="header-line-v"></div>
+        <i class="fa fa-envelope-o header-itens" aria-hidden="true"> atomfiap@gmail.com</i>
+      </div>
+      <div class="itens-top">
+        <a href="https://www.facebook.com/Atom-103046318780244" target="_blank"><i class="fa fa-facebook header-itens"
+            aria-hidden="true"></i></a>
+        <a href="https://twitter.com/Atomfiap" target="_blank"><i class="fa fa-twitter header-itens"
+            aria-hidden="true"></i></a>
+        <a href="https://www.instagram.com/atomfiap/?hl=pt-br" target="_blank"><i class="fa fa-instagram header-itens"
+            aria-hidden="true"></i></a>
+        <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=jrjtXJRtpNKCbDpRLNlDVhfNpBQxfXpFxDDcqWKrzcjCZnDsMdQpKpqslNcbXkMcdjfMVcxM"
+          target="_blank"><i class="fa fa-google-plus header-itens" aria-hidden="true"></i></a>
+      </div>
+    </div>
+    <div class="header-bot">
+      <div class="header-logo">
+        <a href=" "><img src="/imagens/atom-logo.png" alt="" height="60px"></a>
+        <span class="header-logo-name">Atom</span>
+      </div>
+      <span class="toggle-menu" onclick="toggleMenu()">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+      </span>
+      <ul>
+        <li>
+          <a onclick="scrollToElement('#home')">Home</a>
+        </li>
+        <li>
+          <a onclick="scrollToElement('#vantagens')">Vantagens</a>
+        </li>
+        <li>
+          <a onclick="scrollToElement('#nossa-equipe')">Nossa Equipe</a>
+        </li>
+        <li>
+          <a onclick="scrollToElement('#contatos')">Contatos</a>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="parallax">
+      <h1 class="parallax-title">O que é esse projeto do Atom?</h1>
+      <h2 class="parallax-title-description">A nossa solução é a criação de um aplicativo para deficientes auditivos,
+        onde visa a utilização em reuniões, palestras, comunicação empresarial no geral, por meio de um aplicativo que
+        irá reconhecer a voz da(s) pessoa(s) e transformá-la em textos, assim o usuário com problemas auditivos poderá
+        compreender o diálogo.</h2>
+    </div>
+    <div id="vantagens" class="box-vant">
+      <div class="box-vant-title">
+        <h4>
+          Vantagens deste projeto.
+        </h4>
+      </div>
+      <div class="box-vant-content">
+        <div class="box-vant-description">
+          <p>
+            Para o funcionário com problema auditivo, vimos que no dia a dia, podem estar sofrendo com comunicações
+            erradas e percas de avisos ou ate mesmo uma convocação de reuniões, e para solução implementamos um campo
+            aonde clicando no botão e habilitando o microfone, ele transforma o que foi dito em texto, alertas e avisos
+            que chama a atenção do mesmo no site foram também elaborados para uma melhor experiencia ao usuário final,
+            contendo informações de tais compromissos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-wrap">
+    <div class="slide-content fade">
+      <div class="slide-number">1 / 3</div>
+      <img src="/imagens/slide1.png" alt="Primeira imagem do slide">
+    </div>
+    <div class="slide-content fade">
+      <div class="slide-number">2 / 3</div>
+      <img src="/imagens/slide2.png" alt="Segunda imagem do slide">
+    </div>
+    <div class="slide-content fade">
+      <div class="slide-number">3 / 3</div>
+      <img src="/imagens/slide3.png" alt="Terceira imagem do slide">
+    </div>
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+    <div class="slide-click">
+      <span class="dot-vant" onclick="currentSlide(1)"></span>
+      <span class="dot-vant" onclick="currentSlide(2)"></span>
+      <span class="dot-vant" onclick="currentSlide(3)"></span>
+    </div>
+    <script src="js/slide.js"></script>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="project-wrap">
+    <h1 class="project-title">Deaf Safe</h1>
+    <div class="project-func">
+      <p id="output"></p>
+      <button id="start"><i class="fa fa-microphone" aria-hidden="true"></i></button>
+      <script>
+        (() => {
+          const startBtn = document.querySelector('#start');
+          const output = document.querySelector('#output');
+          function start() {
+            const recognition = new webkitSpeechRecognition();
+            recognition.interimResults = true;
+            recognition.lang = "pt-br";
+            recognition.continuous = true;
+            recognition.start();
+            // This event happens when you talk in the microphone
+            recognition.onresult = function (event) {
+              for (let i = event.resultIndex; i < event.results.length; i++) {
+                if (event.results[i].isFinal) {
+                  // Here you can get the string of what you told
+                  const content = event.results[i][0].transcript.trim();
+                  output.textContent = content;
+                }
+              }
+            };
+          };
+          startBtn.addEventListener('click', () => start());
+        })();
+      </script>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div id="nossa-equipe" class="squad-wrap">
+    <div class="squad-content">
+      <div class="squad-inside">
+        <h2 class="squad-title">Quem Somos?</h2>
+        <span class="squad-description">
+          <p>Atom foi criado em 2021, por colegas universitários juntados por um challenger dado pela faculdade, e
+            por meio de uma paixão mútua pela informática, jovens visionários, com um sonho de estar crescendo no ramo
+            de criação e desenvolvimento de robôs, integrando inteligências artificias, buscando evolução e inovação.
+          </p>
+          <p>
+            Nós somos estudantes da FIAP
+            (Faculdade de informática e administração
+            paulista), e fomos preparados para
+            administrar a empresa e o evento com êxito,
+            tendo em vista que nós temos a obrigação de
+            manter a empresa sempre atualizada, e estar
+            prontos para qualquer imprevisto.
+          </p>
+        </span>
+
+        <div class="team-wrap">
+          <div class="person-content">
+            <div class="person-background"></div>
+            <div class="person-text">
+              <div class="person-image-caio"></div>
+              <span class="person-name">Caio Bosnic</span>
+              <span class="person-age">19 anos</span>
+              <span class="person-description">Residente de São Paulo,estudante universitário de Sistema de Informação
+                na FIAP (Faculdade de informática e Administração Paulista) e formado no Colégio Civitatis.
+                Colaboração em projetos: JAVA, Sistema de Informação e Resultados Empresariais e em Resolução
+                Diferenciada de Problemas. </span>
+            </div>
+          </div>
+
+          <div class="person-content">
+            <div class="person-background"></div>
+            <div class="person-text">
+              <div class="person-image-lucas"></div>
+              <span class="person-name">Lucas Nobrega</span>
+              <span class="person-age">19 anos</span>
+              <span class="person-description">Residente de São Paulo,estudante universitário de Sistema de Informação
+                na FIAP (Faculdade de informática e Administração Paulista).
+                Colaboração em projetos: Estrutura de Computadores e desenvolvimento de vídeos.</span>
+            </div>
+          </div>
+
+          <div class="person-content">
+            <div class="person-background"></div>
+            <div class="person-text">
+              <div class="person-image-nicolas"></div>
+              <span class="person-name">Nicolas Oliveira</span>
+              <span class="person-age">19 anos</span>
+              <span class="person-description">Residente de São Paulo, Jundiaí, estudante universitário de Sistema de
+                Informação na FIAP (Faculdade de informática e Administração Paulista). Graduado no Colégio Domus
+                Sapiens.
+                Colaboração em projetos: Web Standarts and Game Developing.</span>
+            </div>
+          </div>
+
+          <div class="person-content">
+            <div class="person-background"></div>
+            <div class="person-text">
+              <div class="person-image-victor"></div>
+              <span class="person-name">Victor Marcello</span>
+              <span class="person-age">20 anos</span>
+              <span class="person-description">Residente de São Paulo, Caieiras estudante universitário de Sistema de
+                Informação na FIAP (Faculdade de informática e Administração Paulista). Graduado no Colégio Bimbatti.
+                Colaboração em projetos: Estrutura de Computadores.</span>
+            </div>
+          </div>
+
+          <div class="person-content">
+            <div class="person-background"></div>
+            <div class="person-text">
+              <div class="person-image-vitor"></div>
+              <span class="person-name">Vitor Akira</span>
+              <span class="person-age">19 anos</span>
+              <span class="person-description">Residente de São Paulo,estudante universitário de Sistema de Informação
+                na FIAP (Faculdade de informática e Administração Paulista). Formado na Escola Técnica Estadual (ETEC).
+                Colaboração em projetos: Storytelling e Inspiração Empreendedora e Estrutura de Computadores.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="contatos" class="contact-wrap">
+    <h1 class="contact-title">Entre em Contato</h1>
+    <div class="contact-itens">
+      <div class="contact-icons-content">
+        <i class="fa fa-phone contact-icons" aria-hidden="true"></i>
+        <span class="icons-title-name">Telefone</span>
+        <span class="icons-name">11 0800 1940 3800</span>
+      </div>
+      <div class="contact-icons-content">
+        <i class="fa fa-envelope contact-icons" aria-hidden="true"></i>
+        <span class="icons-title-name">E-mail</span>
+        <span class="icons-name">atomfiap@gmail.com</span>
+      </div>
+      <div class="contact-icons-content">
+        <i class="fa fa-map-marker contact-icons" aria-hidden="true"></i>
+        <span class="icons-title-name">Localização</span>
+        <span class="icons-name"> Av. Lins de Vasconcelos, 1222 - Aclimação, São Paulo</span>
+      </div>
+    </div>
+    <div class="contact-form-wrap">
+      <form>
+        <div class="form-your-name">
+          <input placeholder="Seu nome">
+        </div>
+        <div class="form-your-name">
+          <input placeholder="Seu e-mail">
+        </div>
+        <div class="form-your-message">
+          <textarea placeholder="Sua mensagem" rows="4"></textarea>
+        </div>
+        <button type="submit" class="form-button">Enviar Mensagem</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-wrap">
+      <div class="footer-content">
+        <h1 class="footer-title">Atom</h1>
+        <div class="footer-itens">
+          <a href="https://www.facebook.com/Atom-103046318780244" target="_blank">
+            <i class="fa fa-facebook footer-icons" aria-hidden="true"></i></a>
+          <a href="https://twitter.com/Atomfiap" target="_blank"><i class="fa fa-twitter footer-icons"
+              aria-hidden="true"></i></a>
+          <a href="https://www.instagram.com/atomfiap/?hl=pt-br" target="_blank"><i class="fa fa-instagram footer-icons"
+              aria-hidden="true"></i></a>
+          <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=jrjtXJRtpNKCbDpRLNlDVhfNpBQxfXpFxDDcqWKrzcjCZnDsMdQpKpqslNcbXkMcdjfMVcxM"
+            target="_blank"><i class="fa fa-google-plus footer-icons" aria-hidden="true"></i></a>
+        </div>
+        <span class="footer-text">
+          Atom © 2021 - Todos os Direitos Reservados.
+        </span>
+      </div>
+    </div>
+  </footer>
+  <script src="https://use.fontawesome.com/4b6fac3087.js"></script>
+  <script src="./js/scroll-to-element.js"></script>
+  <script src="./js/toggle-menu.js"></script>
+
+</body>
+
+</html>
